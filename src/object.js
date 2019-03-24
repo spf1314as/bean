@@ -4,6 +4,10 @@
 
 // 2. 实现 构造函数B 继承构造函数A
 
+// 3. 继承方式 原型继承 寄生继承 组合继承
+
+// 
+
 function A(name){
     this.name = name;
 }
@@ -38,12 +42,6 @@ console.log(Object.getPrototypeOf(parent) === Parent.prototype)
 console.log(Parent.prototype.constructor)
 console.log(Parent.prototype.__proto__)
 console.log(Parent.prototype.prototype)
-
-
-
-
-
-
 
 
 

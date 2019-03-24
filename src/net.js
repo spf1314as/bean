@@ -1,7 +1,7 @@
 // vue router
 // 1. hashchange
 
-//2. pushstate replacestate
+//2. pushstate replacestate popstate
 
 //3. onpopstate
 

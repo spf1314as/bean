@@ -2,7 +2,7 @@
 
 // 2. 左右上下居中
 
-//3. 三栏布局 flex:1;
+//3. 三栏布局 flex:1
 
 //4. 正方形 宽为容器的一半
 
@@ -12,9 +12,13 @@
 
 //7.px rem vw
 
-//8. 页面适配
+//8. 页面适配 1px 
 
-//9.fixed absolute relative
+//9.fixed absolute relative 定位参照元素
+
+//10. flex flex 1 auto none 10%
+
+//11. padding 是相对哪个值确定的
 
 
 
