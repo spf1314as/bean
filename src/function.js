@@ -8,7 +8,7 @@
 
 // 5. iife 创建局部作用域
 
-// 6. 订阅发布模式
+// 6. 订阅发布模式 bus插件就是
 
 // 7. Object.defineProperty()
 
@@ -66,11 +66,12 @@ objGet2();
 
 //9.3 取消promise
 
-//10 函数柯里化 纯函数
+//10 函数柯里化 纯函数 高阶函数 函数编程
 
 // 10.1 实现 show(5)(2) > 7
 
 // 11 var d = new Date() 实现d.formate() 输出 xxxx年xx月xx日
+// 12 实现链式调用
 
 
 
