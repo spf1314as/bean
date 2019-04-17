@@ -141,7 +141,7 @@ Object.prototype.toString().call([]) === '[object Array]'
 // var a = b = 1; // 出现的问题是什么
 /*
   同时赋值给一个引用类型，a和b引用关系相同
-  b 会成为全局变量 
+  b 会成为全局变量
 */
 // 3. typeof x  有多少种结果
 //"boolean" "undefined" "string" "number" "object" "function" + symbol
@@ -221,7 +221,7 @@ function unique(arr) {
   // return Array.from(set)
   return [...set]
 }
-//reduce 
+//reduce
 var Res = function(arr)
 {
   return arr.reduce(function(prev,cur,index,arr)
@@ -335,7 +335,7 @@ function deepclone(arr) // 不对
   var res = [];
   if(Array.isArray(arr))
   {
-     res = res.concat(arr.map(deepclone(arr))) // + res.concat(arr.map(deepclone))
+     res = res.concat(arr.map(deepclone)) // + res.concat(arr.map(deepclone))
   }
   else if(Object.prototype.toString.apply(arr) === "[object object]") // + [object Object]
   {
@@ -353,7 +353,30 @@ function deepclone(arr) // 不对
  return res;
 
 }
+let obj = (function () {
+  let name = 'eeee'
+   function deepclone(arr) {
+       if(Array.isArray(arr))
+       {
+         return arr.map(deepclone);
 
+       }
+       else if(typeof arr === "object" && arr !== null)
+       {
+         var obj = {};
+         for(var key in arr)
+         {
+            obj[key] = deepclone(arr[key])
+         }
+         return obj;
+       }
+       else
+       {
+         return arr;
+       }
+   }
+   return {name};
+})()
 // 7.2 判断两个对象是否相同
 var obj1 = {name:'lilei',age:18,fruit:['apple','banna']};
 var obj2 = {name:'lilei',age:18,fruit:['apple','banna']};
@@ -394,7 +417,7 @@ function equal(obj1,obj2)
     }
     allkeys.map(function(item,index,array)
     {
-      if(Object.keys.indexOf(item)== -1) // Object.keys(obj2).indexOf(item) === -1 
+      if(Object.keys.indexOf(item)== -1) // Object.keys(obj2).indexOf(item) === -1
       {
         return false;
 
@@ -408,6 +431,15 @@ function equal(obj1,obj2)
 
 // 7.3 Object.create()
 
+(function () {
+    function (obj) {
+      var oFun = function () {
+
+      }
+      oFun.prototype = obj;
+      return new oFun();
+    }
+})()
 // 7.4 for...in Object.keys的区别 判断属于自身属性的方法
 // for in包括原型中的属性，
 // 8. ../a/b/c  ../a/c 相对路径表示出来
