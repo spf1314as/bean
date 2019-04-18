@@ -62,15 +62,15 @@ function debounce(fun,delay = 3000)
   return
   {
     name:name,
-    getName:function()
+    getName: function ()
     {
-      return name;
+      return name
     },
     setName:function(){}
   };
 
 })()
-// 6. 订阅发布模式 bus插件就是
+// 6. 订阅发布模式 bus插件就是 npm bus典型的订阅发布
 
 // 7. Object.defineProperty()
 
@@ -86,7 +86,8 @@ function out() {
 
 }
 
-out() //9
+out() //9 + > 10个10
+// 写出console出来的结果
 
 new Promise(function (resolve,reject) {
     console.log('1')
@@ -99,16 +100,16 @@ setTimeout(function () {
 },1000*1)
 console.log(4)
 
-
+// 写出执行结果
 function a() {
-    console.log(b)
+  console.log(b)
 
 }
 a()
-var b = 1;
-b= 2;
-a();
-
+var b = 1
+b = 2
+a()
+// 写出执行结果
 var obj = {
     a: 'obj',
     get:function () {
@@ -136,10 +137,12 @@ function show(a)
  {
     return function(b)
     {
-       return a+b+1;
+       return a+b+1; // + a + b
     }
  }
 // 11 var d = new Date() 实现d.formate() 输出 xxxx年xx月xx日
+
+// Date.prototype.formate = function() {console.log(`${this.getFullYears()}年`)}
 (function()
 {
    var d = new Date();
@@ -151,7 +154,6 @@ function show(a)
          {
            var sTmp = "";
            sTmp += d.getFullYear()+'年';
-
 
          }
      }
