@@ -3,20 +3,20 @@
 *
 */
  [] === 0; //false
- [] == 0;  //"" 0 true
+ [] == 0;  //""-0 0 true
  null == 0; //false
  null === 0; //false
  null == undefined; //true
 
  Number(undefined) == NaN; //false
 NaN === NaN; //false
-NaN == NaN
+NaN == NaN //false
 
 isNaN(false) ; // false
 isNaN('1px'); // true
 false == 0;  //true
-
-!![]; Boolean([]) //true
+isNaN(null); //false
+!![]; Boolean([]) //true,相当于Boolean函数，只有空字符串，0 NaN,null undefined-false
 !!{}; //true
 typeof {}; //"object"
 typeof []; //"object"
@@ -28,44 +28,47 @@ Object.prototype.toString().call([]) === '[object Array]'
  * 1. 写出运行的结果
  *
  */
-[] === 0;
-[] == 0;
-null == 0;
-null === 0;
-null == undefined;
+[] === 0;//false
+[] == 0;//true
+null == 0; //false
+null === 0; //false
+null == undefined;//true
 
-Number(undefined) == NaN;
-NaN === NaN;
+Number(undefined) == NaN;//false
+NaN === NaN;//false
 
-isNaN(false);
-isNaN('1px');
-false == 0;
+isNaN(false);//false
+isNaN('1px');//true
+false == 0;//0 0 true
+
+
+!![];//true
 
 
 !![];
-
-
 !![];
 !![];
-!![];
-!!{};
+!!{};//true
 typeof {};
 typeof []; // 判断数组的方法1 2
 /*
  * 2.js 中定义变量的方式有几种
- *
+ * var let symbol const
  * 2.1 函数声明和函数表达式的区别
- *
+ *函数声明提前
  * var a = b = 1; // 出现的问题是什么
- *
+ *b变成了全局变量
  * 3. typeof x  有多少种结果
- *
+ * object function undefined string number boolean
  * 3.1 parseInt parseFloat Number 区别
- *
+ *Number相当于一元操作符，会先调用对象的valueOf-NaN-toString()
+ parseInt会找到数字忽略后面非数字的部分
  * 3.2 isNaN()  // 存在的问题
- *
+ *isNaN(false)//false
  * 4.实现一个数组的乱序排列 （1.sort 2.其他）
- *
+ * arr.sort(function(){
+ *  return Math.random >0.5
+ * })
  * 5.实现数组的排序
  *
  * 5.1 数组去重
@@ -380,61 +383,11 @@ let obj = (function () {
 // 7.2 判断两个对象是否相同
 var obj1 = {name:'lilei',age:18,fruit:['apple','banna']};
 var obj2 = {name:'lilei',age:18,fruit:['apple','banna']};
-function equal(obj1,obj2)
-{
-  if(Object.keys(obj1).length !== Object.keys(obj2).length)
-  {
-    return false;
-
-  }
-  else
-  {
-    var allkeys = Object.keys(obj1);
-    // return allkeys.every(function(item,index,array)
-    //  {
-    //    return Object.keys.indexOf(item)!== -1;
-    //  });
-    function diff(va1,val2)
-    {
-      //检测数据类型
-      if(typef(val1) !== typeof(val2))
-      {
-         return false;
-      }
-      else
-      {
-        if(typef(val1) === 'object' && va1 !== null)
-        {
-          return equal(val1,val2);
-        }  else {
-          if (val1 !== val2) { // +
-            return false
-          }
-        }
-      }
-      return true // +
-
-    }
-    allkeys.map(function(item,index,array)
-    {
-      if(Object.keys.indexOf(item)== -1) // Object.keys(obj2).indexOf(item) === -1
-      {
-        return false;
-
-      }
-      return diff(obj1.item,obj2.item)
-
-    });
-  }
-
-}
-
 // 7.3 Object.create()
 
 (function () {
-    function (obj) {
+    function create (obj) {
       var oFun = function () {
-
       }
       oFun.prototype = obj;
       return new oFun();
@@ -442,18 +395,64 @@ function equal(obj1,obj2)
 })()
 // 7.4 for...in Object.keys的区别 判断属于自身属性的方法
 // for in包括原型中的属性，
-// 8. ../a/b/c  ../a/c 相对路径表示出来
+// 8. ./a/b/c  ../a/c 相对路径表示出来 
+//  ./b/c     ../c
+  function join (path1, path2) {
+    let arr1 = path1.split('/') // ['..','a','b', 'c]
+    let arr2 = path2.split('/') // ['..', 'a', 'c']
+    for(var i = 0;i<arr1.length;i++){
+      if(arr1[i] == '..'){
+        var sTmp = arr[i+1];
+
+
+      }
+      for(var j = 0;j<arr2.length;j++){
+        if(arr2[j] == '..'){
+           var sTmp2 = arr2[j+1];
+        }
+      }
+
+    }
+  }
 
 // 9. 闭包 作用域链
 //
 // 9.1 this arguments
 
 // 10. jsonp原理(手写jsonp) websocket  跨域的其他方法 axios preflight withcredients
+(function(window,document){
 
+  var jsonp = function(){
+    var sUrl = "http://127.0.0.1";
+    var oData ={name:'doudou',age:18};
+    sUrl += sUrl.indexOf('?')==-1?'?':'';
+    for(var key in oData){ // index.htm?name=key&
+      sUrl+='&'+key+'='+oData[key];
+
+    }
+    var sFunCall = 'myjsoncallback'+new Date.getTime();
+    sUrl+='callback='+sFunCall;
+    var script = document.createElement('script')
+    script.src = url;
+    window.sFunCall = function(data)
+    {
+      callback(data);
+      function callback(){ //$.ajax({url,data:data, onsuccess:)
+
+      }
+      document.body.removeChild(script);
+      window.sFunCall = null
+
+    }
+    document.body.appendChild(script);
+
+  }
+  window.$jsonp = jsonp;
+})(window,document)  //jsonp(url,data,fn)
 // 10.1 fetch xhr
 //
 // 11. http 的状态码
-//200-OK 302-资源重定向 404-找不到 500-服务器错误
+//200-OK 204 206 301 302-资源重定向 304  401 403 404-找不到 405 500-服务器错误 502 503
 // 11.1 输入url 到页面渲染出来的过程
 /*dns解析 返回静态资源文件
 * css js 阻塞html 渲染 defer async type=module
@@ -466,7 +465,8 @@ function equal(obj1,obj2)
 // 13. js垃圾回收机制  标记清除 引用计数
 
 //14. requestAnimationFrame
-
+//执行一个动画，浏览器在下次重绘前使用指定的回调函数更新动画，返回值一个整数，表示请求id
+//通常与浏览器刷新次数相匹配
 //一个作用域问题
 function sendrequest()
 {

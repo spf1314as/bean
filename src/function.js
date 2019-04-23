@@ -72,8 +72,19 @@ function debounce(fun,delay = 3000)
 })()
 // 6. 订阅发布模式 bus插件就是
 
+
 // 7. Object.defineProperty()
 
+var obj = {};
+Object.defineProperty(obj,'name',{
+  writable:false,
+ getName:function(){
+   return this.Name;
+ },
+ setName:function(data){
+    this.Name = data;
+ }
+});
 // 8. 下面代码输出结果
 
 function out() {
@@ -86,7 +97,7 @@ function out() {
 
 }
 
-out() //9
+out() //10*10
 
 new Promise(function (resolve,reject) {
     console.log('1')
@@ -97,7 +108,7 @@ new Promise(function (resolve,reject) {
 setTimeout(function () {
     console.log(3)
 },1000*1)
-console.log(4)
+console.log(4)//4 1 2 3
 
 
 function a() {
@@ -108,18 +119,18 @@ a()
 var b = 1;
 b= 2;
 a();
-
+//2 2
 var obj = {
     a: 'obj',
     get:function () {
         console.log(this.a)
     }
 }
-obj.get()
+obj.get()//'obj'
 var objGet = obj.get;
-objGet();
+objGet();//undefined
 var objGet2 = obj.get.bind(obj)
-objGet2();
+objGet2();//'obj'
 
 // 9. promise
 // 9.1 Promise.all()  then  catch
@@ -136,26 +147,18 @@ function show(a)
  {
     return function(b)
     {
-       return a+b+1;
+       return a+b;
     }
  }
 // 11 var d = new Date() 实现d.formate() 输出 xxxx年xx月xx日
 (function()
 {
-   var d = new Date();
-   if(!formate in d)
-   {
-     d.formate = function(d,format)
-     {
-         if(format === "Y-Y-Y-Y M-D")
-         {
-           var sTmp = "";
-           sTmp += d.getFullYear()+'年';
-
-
-         }
-     }
+   Date.prototype.formate = function(){
+     var that = this;
+     var sRes = "";
+     sRes+=that.getFullYear()+'年'+that.getMonth()+'月'+that.getDay()+'日：“';
    }
+
 })()
 // 12 实现链式调用
 var obj =
