@@ -218,3 +218,5 @@ console.log(select(arr));
   var a = new foo();
   console.log(a);
 })()
+
+
