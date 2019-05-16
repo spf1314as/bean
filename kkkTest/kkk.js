@@ -208,4 +208,13 @@ console.log(select(arr));
 
   }
   console.log(deepclone(arr));
-  })()
+  })();
+//function return
+;(function(){
+
+  function foo(){
+    return {};
+  }
+  var a = new foo();
+  console.log(a);
+})()
