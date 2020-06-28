@@ -1,0 +1,102 @@
+/* 1.跨域请求
+  JSONP   CORS  GET POST在跨域上的区别
+  */
+// CORS-跨域资源共享 Cross-origin Resource Sharing
+// 同源策略的限制是浏览器的行为，CORS需要服务器端在响应头部做处理，允许跨域请求，
+// 浏览器检测到相应配置就会允许跨域的的请求响应，不再拦截
+// 字段
+// Access-Control-Allow-Origin
+//服务器端配置了cors，跨域的文档也可以使用XMLHttpRequest使用该服务
+
+
+//JSONP-使用<script>元素作为Ajax传输的技术
+/* script标签设置src属性并插入到document中，浏览器就会发送一个HTTP请求（GET类型请求）下载src属性
+   指向的URL
+   JSONP原理：1.script进行ajax传输不受同源策略的限制，可以从其他的服务器请求数据
+             2.包含JSON编码数据的响应体会自动解码即执行
+                   --script标签请求回来的自动作为js代码执行
+   请求只支持get不支持post
+*/
+function getJSONP(url, callback)
+{
+  var cbnum = 'cb'+getJSONP.count++;//自增计数器，每次jsonp请求都创建一个新的回调
+  //或者 var cnnum = 'cg'+new Date().getTime()
+  var cbname = "getJSONP."+cbnum;
+  if(url.indexOf('?') === -1)
+  {
+    url+='?jsonp='+cbname;
+
+  }else{
+    ulr+='&jsonp='+cbname;
+  }
+  //get请求，有其他要提交的数据追加在url里
+  var script = document.createElement("script")
+  getJSONP[cbname]=function (response){
+    try{
+      callback(response)
+
+    }finally{
+
+      delete getJSONP[cbname]
+      script.parentNode.removeChild(script)
+    }
+  }
+  script.src = url;
+  document.body.appendChild(script)
+
+}
+getJSONP.count = 0;
+//x-Frame-options:sameorigin
+
+//2.运算
+// 1.一元加操作符相当于Number转型函数，
+  +new Date()
+'s'+new Date();
++new Date()+'s';
+//日期对象直接比较大小，valueOf-返回毫秒表示；toString()-字符串
+//判断数字或数字字符串，其余返回NaN
+function isNumber(oData)
+{
+   function deal(oData)
+   {
+     return isNaN(parseInt(oData))?false:true;
+
+   }
+   return isNaN(oData)?false:deal(oData)
+
+}
+console.log(isNumber(false))
+console.log(isNumber(null))
+console.log(isNumber(123))
+console.log(isNumber('123px'))
+//判断类型
+function isType(oData){
+  if(typeof oData === "object")
+  {
+    return Array.isArray(oData)?'array':'object';
+
+  }else{
+    return typeof oData;
+  }
+
+}
+//CSRF-cross site request fategory
+
+//浏览器渲染页面原理
+//取数组中第四大元素
+var i = 0;
+function getFourth(arr)
+{
+   var Max = Math.max.apply(null,arr);
+   if(i===3){ return Max;}
+   arr.splice(arr.indexOf(Max),1);
+   i++;
+   getFourth(arr);
+
+
+}
+Console.log(getFourth([2,4,5,6,7,8,9]));
+
+//返回数组中值得和为xx的两个元素
+//数组排序
+//字符串方法

@@ -208,4 +208,167 @@ console.log(select(arr));
 
   }
   console.log(deepclone(arr));
-  })()
+  })();
+//function return
+;(function(){
+
+  function foo(){
+    return {};
+  }
+  var a = new foo();
+  console.log(a);
+})();
+
+function bubble(arr) {
+  var len = arr.length;
+  for(var i =0,bChange = true;i<len-1 && bChange;i++){
+    bChange  = false;
+      for(var j =0;j<len-i-1;j++){
+          if(arr[j]>= arr[j+1]){
+              var temp = arr[j];
+              arr[j] = arr[j+1];
+              arr[j+1] = temp;
+              bChange = true;
+          }
+      }
+  }
+  return arr
+  // var len = arr.length;
+  // for(var i = 0,bChange = true;i<len-1 && bChange;i++)
+  // {
+    // bChange = false
+  //     for(var j = 0;j<len-i+1;j++)
+  //     {
+  //       if(arr[j] > arr[j+1])
+  //       {
+  //          var tmp = arr[j];
+  //          arr[j] = arr[j+1];
+  //          arr[j+1] = tmp;
+             //bChange = true;
+
+  //       }
+
+  //     }
+
+  // }
+}
+bubble([1,2,3,4,5]);
+function select(arr) {
+  var len = arr.length;
+  var minIndex = 0;
+
+  for(var i=0;i<len-1;i++){
+      minIndex = i;
+      for(var j = i+1;j<len;j++){
+          if(arr[j]<= arr[minIndex]){
+              minIndex = j;
+          }
+      }
+      var temp = arr[i];
+      arr[i] = arr[minIndex];
+      arr[minIndex] = temp
+  }
+  return arr
+  // var len = arr.length;
+  // var minIndex = 0;
+  // for(var i = 0; i<len-1;i++){
+  //   minIndex = i;
+  //   for(var j = i+1;j<len;j++){
+  //     if(arr[j] <=arr[minIndex]){
+  //         minIndex = j;
+  //     }
+  //   }
+
+  // }
+
+}
+console.log(select([2,5,6,7,9,3]));
+function insertSort(arr) {
+  var len = arr.length;
+  var temp;
+  for (var i = 1;i < len;i++){
+      temp = arr[i]
+      for (var j = i;j > 0 && temp < arr[j-1];j--){
+          // 当前值和之前的每个值进行比较，发现有比当前值小的值就进行重新赋值
+          arr[j] = arr[j-1];
+      }
+      arr[j] = temp;
+  }
+  return arr;
+}
+console.log(insertSort([2,5,4,7,9,3]));
+
+var nIndex = 0;
+var arrtry =[2,4,5,6,7,8,9];
+var Res = arrtry[0];
+function getFourth(arr)
+{
+  if(nIndex===4){ return Res;}
+   var Max = Math.max.apply(null,arr);
+   if(nIndex < 4)
+   {
+    Res = Max;
+    nIndex++;
+    arr.splice(arr.indexOf(Max),1);
+      getFourth(arr);
+      // return Max;
+   }
+
+
+
+}
+getFourth(arrtry)
+console.log(Res);
+
+var nIndex2 = 0;
+
+function getFourth2(arr,n){
+  // var aRes = [];
+
+  //  return [].concat((function(aRes){
+  //   // if(aRes.length === 4){return}
+  //   var Max = Math.max.apply(null,arr);
+  //   aRes.push(Max);
+  //   arr.splice(arr.indexOf(Max),1);
+  //  return aRes.length===4 ? aRes: getFourth2(arr);
+  //   // return aRes;
+  //  })([]));
+   return (function dealData(aRes){
+    var Max = Math.max.apply(null,arr);
+    aRes.push(Max);
+    arr.splice(arr.indexOf(Max),1);
+   return aRes.length===n ? aRes: dealData(aRes);
+   })([])
+  //  aRes.length<4&&aRes.concat(getFourth2(arr))
+  //  return aRes.concat(getFourth2(arr))
+}
+console.log(getFourth2([2,4,5,6,7,8,9],4))
+
+function getFourth3(arr){
+  var len = arr.length;
+  var max = [],min = [];
+    for(var i = 1;i<len-1;i++){
+       if(arr[0]>=arr[i]){
+          min.push(arr[i]);
+       }else{
+         max.push(arr[i]);
+       }
+    }
+    return
+}
+//字符串中出现最多次数的字符
+//数组中寻找和最接近m的两个元素
+//不使用loop，创建一个长度为100的数组且每个元素的值等于下标
+/**  number*/
+function dealNumber(num)
+
+{
+if(num < 1000)return num;
+var pieNum = parseInt(num/1000);
+  if(num%1000 < 1000){
+    // return ','+num%1000+dealNumber(pieNum);
+    return dealNumber(pieNum)+','+num%1000;
+  }
+
+}
+console.log(dealNumber(1456789));

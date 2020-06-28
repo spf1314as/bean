@@ -1,0 +1,305 @@
+ /* div{
+        float: left;
+      }
+      .div1{
+        width: 100%;
+      }
+      .div2,.div3{
+        width: 50%;
+      } */
+      .parent{
+        width:100%;
+        height:100%;
+        position:absolute;
+        /* visibility: hidden; */
+        left:0;
+        top:0;
+        /* bottom: 0;
+        right: 0; */
+        z-index: 1000;
+      }
+      .li1{
+        width:50px;
+        height:50px;
+        background: red;
+
+        border:1px solid black;
+      }
+      .li2{
+        width:50px;
+        height:50px;
+
+        background: green;
+        border:1px solid black;
+      }
+      .li3{
+        width:50px;
+        height:50px;
+
+        background: blue;
+        border:1px solid black;
+      }
+      .float{
+        overflow: hidden;
+      }
+      .lifloat{
+        float: left;
+      }
+      .inlinBlo{
+        display: inline-block;
+      }
+
+      .ul:after{
+        content:'ddd';
+        display: block;
+        clear: both;
+      }
+     .ulfont
+      {
+        font-size: 0;
+      }
+      .myspan{
+        /* text-align: middle; */
+        vertical-align: middle;
+      }
+      .left{
+        float:left;
+        margin-right: 30px;
+        background: yellow
+      }
+      .right{
+        background: blue;
+      }
+      .myimg{
+        width:30px;
+        height:30px;
+        vertical-align: middle;
+      }
+      .inline{
+        /* vertical-align: middle; */
+
+      }
+      .inline span {
+        display: inline-block;
+        height: 100px;
+        background: red;
+        /* line-height: 60px; */
+        vertical-align: middle;
+      }
+      .center-container{
+        background: green;
+        /* width:100px; */
+        height: 300px;
+        /* position: relative; */
+        display: flex;
+        justify-content: space-around;
+        align-items: center
+
+        /* padding:25%; */
+      }
+      .child{
+        background: red;
+        /* position: absolute; */
+        /* top: 50%;
+        left: 50%; */
+        /* transform: translate(-50%,-50%); */
+        padding-top: 20%;
+        padding-left: 20%;
+        /* top: 0;
+        left:0;
+        bottom: 0;
+        right: 0;
+        margin: auto; */
+
+      }
+      .text{
+       position: absolute;
+       top: 0;
+       left: 0;
+        width: 100%;
+        margin: 10%;
+        background: black;
+      }
+
+    /* flex 弹性两栏布局 */
+    .twoParent{
+      margin-top:10px;
+      width:800px;
+      border:1px solid green;
+      display: flex;
+    }
+    .twoChildleft{
+      background: yellow;
+
+    }
+    .twoChildright{
+      background:blue;
+    }
+    /* 定位实现 */
+    .twoParent2{
+      margin-top:10px;
+      width:800px;
+      border:1px solid green;
+      position: relative;
+    }
+    .twoChildleft2{
+      background: yellow;
+      width:100px;
+
+
+    }
+    .twoChildright2{
+      background:blue;
+      position: absolute;
+      left:100px;
+      top:0;
+    }
+    /* 三栏布局1 */
+    .thrParent1{
+      margin-top:10px;
+      width:800px;
+      border:1px solid green;
+
+    }
+    .thrChildleft1{
+      background: yellow;
+      width:100px;
+      float:left;
+
+    }
+    .thrChildmiddle1{
+      background:red;
+      float:left
+    }
+    .thrChildright1{
+      background:blue;
+
+    }
+    /* 三栏布局2 */
+    .thrParent2{
+      margin-top:10px;
+      width:800px;
+      border:1px solid green;
+      position: relative;
+    }
+    .thrChildleft2{
+      background: yellow;
+      width:100px;
+      /* position: absolute; */
+
+    }
+    .thrChildmiddle2{
+      background:red;
+      position: absolute;
+     left:80px;
+     top:0;
+    }
+    .thrChildright2{
+      background:blue;
+      position: absolute;
+      top:0;
+      right:0;
+      /* margin-left:200px; */
+    }
+     /* 三栏布局3*/
+     .thrParent3{
+      margin-top:10px;
+      width:800px;
+      border:1px solid green;
+      display: flex;
+    }
+    .thrChildleft3{
+      background: yellow;
+      width:100px;
+      /* position: absolute; */
+
+    }
+    .thrChildmiddle3{
+      background:red;
+
+    }
+    .thrChildright3{
+      background:blue;
+
+    }
+/* 进度条 */
+@keyframes myfirst
+{
+from {background: red;}
+to {background: yellow;}
+}
+
+@-moz-keyframes myfirst /* Firefox */
+{
+from {background: red;}
+to {background: yellow;}
+}
+
+@-webkit-keyframes myfirst /* Safari 和 Chrome */
+{
+from {background: red;}
+to {background: yellow;}
+}
+
+@-o-keyframes myfirst /* Opera */
+{
+from {background: red;}
+to {background: yellow;}
+}
+
+.progress{
+  animation: myfirst 5s;
+  -moz-animation: myfirst 5s;	/* Firefox */
+  -webkit-animation: myfirst 5s;	/* Safari 和 Chrome */
+  -o-animation: myfirst 5s;	/* Opera */
+}
+/* 弹性布局 */
+.flexbox{
+  border:1px solid red;
+  display: flex;
+  width:800px;
+}
+.item1{
+  background: yellow;
+  width: 100px;
+  height: 100px;
+  margin:10px;
+  flex-shrink: 0;
+
+
+}
+.item2{
+  background: yellow;
+  width: 100px;
+  height: 100px;
+  margin:10px;
+
+}
+.item3{
+  background: yellow;
+  width: 100px;
+  height: 100px;
+  margin:10px;
+
+}
+.item4{
+  background: yellow;
+  width: 100px;
+  height: 100px;
+  margin:10px;
+
+}
+.middlebox{
+  width:100%;
+  height:100px;
+  display: flex;
+  background:green;
+  justify-content: space-around;
+  align-items: center;
+
+}
+.mi1{
+ /* flex-basis: 50%; */
+  background:red;
+  width:50%;
+}
